@@ -2,8 +2,20 @@
 
 Welcome to visit the homepage of our ICSE'24 paper entitled "Fairness Improvement with Multiple Protected Attributes: How Far Are We?". The homepage contains scripts and data, as well as installation instructions, intermediate results, and a replication guideline.
 
-## Docker image
-In order to facilitate the replication of our study, we provide a docker image, which can be downloaded from xx. The docker image includes all the required libraries, datasets, and dependencies for this study. Based on the docker image, you can directly replicate our study following the instructions in the Reproduction and Step-by-step Guide sections.
+## Purpose
+
+We apply for the Available and Reusable badges.
+
+* The artifact has been placed on Figshare under the Apache License with a DOI, publically accessible to other researchers. Therefore, we apply for the Available badge.
+
+* The artifact has provided the intermediate results and scripts to ease the reproduction of our paper. It has included a docker image and a step-by-step guide on how to run the scripts and obtain all the results for all our research questions. Therefore, we apply for the Reusable badge.
+
+## Provenance
+
+This artifact is for our ICSE'24 paper entitled "Fairness Improvement with Multiple Protected Attributes: How Far Are We?" (https://chenzhenpeng18.github.io/papers/ICSE24.pdf).
+
+## Setup
+In order to facilitate the replication of our study, we provide a docker image, which can be downloaded from https://drive.google.com/file/d/1AWm6U0Cdv5KEpN_6EguHZrVL2hK_Vcze/view?usp=sharing. The docker image includes all the required libraries, datasets, and dependencies for this study. Based on the docker image, you can directly replicate our study following the instructions in the Reproduction and Step-by-step Guide sections.
 
 To use the docker image to replicate our study, you need to 
 
@@ -15,7 +27,7 @@ To use the docker image to replicate our study, you need to
 
 (3) excute the image using the commands:
 
-	docker run --name icse24_test -idt icse24
+	docker run --name icse24_test -idt image_icse24
 
 	docker exec -it icse24_test /bin/bash
 
@@ -26,12 +38,12 @@ To use the docker image to replicate our study, you need to
 We have included all the code and data of our study in the ```root/ICSE24``` folder of the docker image. You can run the code according to our instructions in the Reproduction and Step-by-step Guide sections.
 
 
-## Datasets
+### Datasets
 
 We have provided the original datasets that we use in this folder. The download link of each dataset is provided as a reference in the paper. We use the data processing scripts provided by [previous work](https://ieeexplore.ieee.org/document/9951398) to process the datasets. We have included the original datasets, the data processing scripts, and the processed datasets in the ```Dataset``` folder.
 
 
-## Scripts and results
+### Scripts and results
 
 * ```Analysis_code/``` contains the scripts for producing the results for all RQs. You can reproduce all the results based on the intermediate results provided by us by running ```rq1.py```, ```rq2.py```, ```rq3_1.py```, ```rq3_2.py```, and ```rq4.py```.
 
@@ -53,7 +65,7 @@ We have provided the original datasets that we use in this folder. The download 
 
 * ```Results_multi/``` contains the raw results of applying each fairness improvement method in each scenario with multiple protected attributes. Each file in this folder has 21 columns, with the first column indicating the metric, and the next 20 columns the metric values of 20 runs.
 
-## Reproduction 
+## Usage (Reproduction) 
 You can directly reproduce all the results for all our research questions (RQs) based on the intermediate results provided by us.
 
 ### RQ1 (Impact on Unconsidered Protected Attributes)
@@ -87,7 +99,7 @@ python rq4.py
 ```
 The commands output `rq4_result`, which provides the results of Figure 2(a) and Figure 2(b).
 
-## Step-by-step Guide
+## Usage (Step-by-step Guide)
 You can also reproduce the results from scratch. We provide the step-by-step guide on how to reproduce the intermediate results and obtain the results for RQs based on them.
 
 ### RQ1 (Impact on Unconsidered Protected Attributes): How do existing fairness improvement methods affect the fairness regarding unconsidered protected attributes? 
@@ -717,7 +729,6 @@ python FairSMOTE.py -d mep2 -c lr
 python FairSMOTE.py -d mep2 -c rf
 python FairSMOTE.py -d mep2 -c svm
 python FairSMOTE_dl.py -d mep2 -c dl
-
 ```
 
 As a result, we can obtain the results of each fairness improvement for 20 (dataset, ML algorithm) combinations. The raw result for each combination is then moved to the `Results_multi/` folder. For example, in this folder, `maat_lr_adult_multi.txt` contains the results of MAAT for the (adult, lr) combination. Each file in the folder has 21 columns, with the first column indicating the metric and the next 20 columns the metric values of 20 runs.
