@@ -77,6 +77,22 @@ for dataset in ['adult','compas','default','mep1','mep2']:
 
 fout.write('\n')
 
+fout.write('decreasing unconsidered fairness\n')
+for z in ['adult-sex', 'adult-race', 'compas-sex', 'compas-race', 'default-sex', 'default-age', 'mep1-sex', 'mep1-race', 'mep2-sex', 'mep2-race']:
+    countt = 0
+    for name in ['rw', 'dir', 'meta','adv', 'pr', 'eop', 'ceo','roc', 'fairsmote', 'maat', 'fairmask']:
+        for clf in ['lr','rf','svm','dl']:
+            for k in ['spd2', 'aod2', 'eod2']:
+                default_list = data[clf][z][k]['default']
+                real_list = data[clf][z][k][name]
+                default_valuefork = mean(default_list)
+                real_valuefork = mean(real_list)
+                if default_valuefork < real_valuefork:
+                    countt+=1
+    fout.write('%s\t%f\n' % (z,countt/132))
+
+fout.write('\n')
+
 fout.write("Correlation between the last two columns:\n")
 fout.write(str(spearmanr([0.101, 0.101, 0.068, 0.068, -0.069, -0.069, -0.015, -0.015, -0.016, -0.016],[0.447, 0.568, 0.409, 0.333, 0.841, 0.765, 0.742, 0.644, 0.485, 0.515])))
 

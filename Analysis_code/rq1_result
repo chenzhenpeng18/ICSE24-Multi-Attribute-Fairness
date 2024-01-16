@@ -24,5 +24,17 @@ SpearmanrResult(correlation=-0.015026791295723717, pvalue=0.058679341458350735)
 mep2:
 SpearmanrResult(correlation=-0.016170619991220016, pvalue=0.042915654141260924)
 
+decreasing unconsidered fairness
+adult-sex	0.446970
+adult-race	0.568182
+compas-sex	0.409091
+compas-race	0.333333
+default-sex	0.840909
+default-age	0.765152
+mep1-sex	0.742424
+mep1-race	0.643939
+mep2-sex	0.484848
+mep2-race	0.515152
+
 Correlation between the last two columns:
 SpearmanrResult(correlation=-0.6400757530925302, pvalue=0.04622118674908396)

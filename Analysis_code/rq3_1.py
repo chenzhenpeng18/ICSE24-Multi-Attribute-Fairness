@@ -92,6 +92,11 @@ for k in ['accuracy', 'precision','recall', 'f1score','mcc']:
     for pp in print_list:
         fout.write('\t'+k+"_"+pp)
 fout.write('\n')
+average_result = {}
+for pp in print_list:
+    average_result[pp] = {}
+    for k in ['accuracy', 'precision', 'recall', 'f1score', 'mcc']:
+        average_result[pp][k] = []
 for name in ['rw', 'dir', 'meta','adv', 'pr', 'eop', 'ceo','roc', 'fairsmote', 'maat', 'fairmask']:
     fout.write(name)
     for k in ['accuracy', 'precision','recall', 'f1score','mcc']:
@@ -109,6 +114,15 @@ for name in ['rw', 'dir', 'meta','adv', 'pr', 'eop', 'ceo','roc', 'fairsmote', '
                 compto_default_multi.append(a2_perf-mean(data[clf][z][k]['default']))
                 compto_default_multi_rela.append((a2_perf-mean(data[clf][z][k]['default']))/mean(data[clf][z][k]['default']))
         fout.write('\t%f\t%f\t%f\t%f' % (mean(compto_default_single), mean(compto_default_single_rela),mean(compto_default_multi),mean(compto_default_multi_rela)))
+        average_result['single_abso'][k].append(mean(compto_default_single))
+        average_result['single_rela'][k].append(mean(compto_default_single_rela))
+        average_result['multi_abso'][k].append(mean(compto_default_multi))
+        average_result['multi_rela'][k].append(mean(compto_default_multi_rela))
     fout.write('\n')
+fout.write('Average')
+for k in ['accuracy', 'precision','recall', 'f1score','mcc']:
+    for pp in print_list:
+        fout.write('\t%f' % mean(average_result[pp][k]))
+fout.write('\n')
 fout.close()
 
